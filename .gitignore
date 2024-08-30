@@ -1,0 +1,11 @@
+# env file
+.env
+#other files
+diffuseers.py
+test.ipynb
+app_googlenews.py
+app.py
+app2.py
+
+#virtual env
+virtualenv
