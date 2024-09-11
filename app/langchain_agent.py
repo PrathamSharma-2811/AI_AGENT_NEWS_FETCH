@@ -128,14 +128,14 @@ class LangChainAgent:
         self.article_tool = ArticleExtractorSummarizer(api_key)
 
         self.news_search_tool = CustomNewsSearchTool()
-        # self.llm = HuggingFaceEndpoint(
-        #     repo_id="mistralai/Mistral-7B-Instruct-v0.2", 
-        #     huggingfacehub_api_token=os.getenv("hf_token")
-        # )
-        self.llm = ChatGoogleGenerativeAI(
-    model="gemini-1.0-pro",
-    api_key=os.getenv('gemini_key'),
-)
+        self.llm = HuggingFaceEndpoint(
+            repo_id="meta-llama/Meta-Llama-3-8B-Instruct", 
+            huggingfacehub_api_token=os.getenv("hf_token")
+        )
+#         self.llm = ChatGoogleGenerativeAI(
+#     model="gemini-1.0-pro",
+#     api_key=os.getenv('gemini_key'),
+# )
         self.jina_scraper = JinaScraper()
 
         # Define the tools first
