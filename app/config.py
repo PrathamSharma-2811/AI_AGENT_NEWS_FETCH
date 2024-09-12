@@ -8,5 +8,5 @@ class Config:
     NEWS_API_KEY = os.getenv("news_api")
     HF_TOKEN = os.getenv("hf_token")
     GEMINI_KEY = os.getenv("gemini_key")
-    MONGO_URL = os.getenv('MONGO_URL')
+    MONGO_URI = os.getenv('MONGO_URI')
     

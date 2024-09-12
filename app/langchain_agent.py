@@ -81,12 +81,12 @@ class CustomNewsSearchTool(BaseTool):
 
         params = {
             "q": keyword,
-            "from": '2024-08-01',  # Set your desired date range
-            "sortBy": "publishedAt",
+            "from": '2024-09-10',  # Set your desired date range
+            "sortBy": "relevancy",
             "language": "en",
             "apiKey": api_key,
             "page":1,
-            "domains":"bbc.co.uk, techcrunch.com"
+            "domains":"ndtv.com"
         }
 
         try:
@@ -125,7 +125,7 @@ class LangChainAgent:
 
         self.news_search_tool = CustomNewsSearchTool()
         self.llm = HuggingFaceEndpoint(
-            repo_id="meta-llama/Meta-Llama-3-8B-Instruct", 
+            repo_id="mistralai/Mixtral-8x7B-Instruct-v0.1", 
             huggingfacehub_api_token=os.getenv("hf_token")
         )
 #         self.llm = ChatGoogleGenerativeAI(
@@ -174,8 +174,10 @@ YOU ARE NEWS_FETCH.AI, A HIGHLY INTELLIGENT AND SPECIALIZED BOT DESIGNED TO PROV
     {tools}
 
     ### IMPORTANT ###
-    1. Every News articles you return mus include title ,url to image, url and description of the news article(s).
-    2. If the query is broad or requires multiple articles, provide the top 2 relevant news items.
+    1. Every News articles you return mus include title ,url to image, url and description of the news article(s) you get from NewsSearch tool.
+    2. If the query is broad or requires multiple articles, provide the top 1 relevant news item.
+    3. Do not provide dummy urls,images and news ,provide only authenticate news only.
+
 
    
     Use the following format:
@@ -183,7 +185,7 @@ YOU ARE NEWS_FETCH.AI, A HIGHLY INTELLIGENT AND SPECIALIZED BOT DESIGNED TO PROV
 
             Question: {input}
             Thought: Analyze the input to understand the user's request and determine the best approach.
-            Action: Choose the appropriate action from {tool_names} and extract the subject for the news search.
+            Action: Choose the appropriate action from {tool_names} and extract the subject for the news search. Simply just pass the query to tool and you will get good response from it.
             Action Input: Pass the extracted keyword to the `NewsSearch` tool.
             Observation: Record the result of the action.
             Thought: Synthesize the information and prepare the final response.

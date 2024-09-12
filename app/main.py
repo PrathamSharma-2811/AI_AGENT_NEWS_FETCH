@@ -24,7 +24,7 @@ app.config["JWT_SECRET_KEY"] = os.getenv("JWT_SECRET_KEY")
 jwt = JWTManager(app)
 
 # MongoDB configuration
-db_client = MongoDBClient(db_url=os.getenv("MONGO_URL"), db_name="newsapp")
+db_client = MongoDBClient(db_url=os.getenv("MONGO_URI"), db_name="newsapp")
 if(db_client):
     print("Connected to MongoDB, User can start now!")
 

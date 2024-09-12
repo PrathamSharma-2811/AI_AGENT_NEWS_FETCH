@@ -14,7 +14,7 @@ CORS(app)  # Enable Cross-Origin Resource Sharing (CORS)
 # Import routes from main.py
 from app.main import app as main_app
 
-app.config["MONGO_URL"] = os.getenv("MONGO_URL")
+app.config["MONGO_URI"] = os.getenv("MONGO_URI")
 
 
 # Initialize MongoDB client
