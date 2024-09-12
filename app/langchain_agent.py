@@ -2,10 +2,7 @@ import requests
 from bs4 import BeautifulSoup
 from typing import Optional, Type
 from pydantic import BaseModel, Field
-from langchain_core.callbacks import (
-    AsyncCallbackManagerForToolRun,
-    CallbackManagerForToolRun,
-)
+from langchain_core.callbacks import CallbackManagerForToolRun
 from langchain.prompts import ChatPromptTemplate
 import os
 from dotenv import load_dotenv
@@ -129,7 +126,7 @@ class LangChainAgent:
 
         self.news_search_tool = CustomNewsSearchTool()
         self.llm = HuggingFaceEndpoint(
-            repo_id="mistralai/Mistral-7B-Instruct-v0.2", 
+            repo_id="meta-llama/Meta-Llama-3-8B-Instruct", 
             huggingfacehub_api_token=os.getenv("hf_token")
         )
 #         self.llm = ChatGoogleGenerativeAI(
