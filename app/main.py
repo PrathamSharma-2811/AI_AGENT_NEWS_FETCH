@@ -26,7 +26,7 @@ jwt = JWTManager(app)
 # MongoDB configuration
 db_client = MongoDBClient(db_url=os.getenv("MONGO_URL"), db_name="newsapp")
 if(db_client):
-    print("Connected to MongoDB")
+    print("Connected to MongoDB, User can start now!")
 
 
 @app.route('/signup', methods=['POST'])
