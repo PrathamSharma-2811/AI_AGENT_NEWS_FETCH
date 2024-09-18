@@ -70,8 +70,8 @@ class NewsSearchInput(BaseModel):
 
 
 class CustomNewsSearchTool(BaseTool):
-    name = "NewsSearch"
-    description = "Fetches news articles according to parameters passed to newsapi.org api."
+    name: str = "NewsSearch"  # Add type annotation
+    description: str = "Fetches news articles according to parameters passed to newsapi.org api."
 
     def _run(self, keyword: str, run_manager: Optional[CallbackManagerForToolRun] = None) -> dict:
         """Fetch news articles based on the keyword provided in api parameters"""
