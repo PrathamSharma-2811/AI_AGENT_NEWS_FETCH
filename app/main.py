@@ -12,6 +12,7 @@ from flask_cors import CORS
 from dotenv import load_dotenv
 import os
 from mongo_client import MongoDBClient
+from parser import parse_agent_response
 
 # Load environment variables
 load_dotenv()
@@ -71,20 +72,27 @@ def home():
     current_user = get_jwt_identity()
     return jsonify({"message": f"Welcome {current_user} to the home page!"}), 200
 
+
+
+
 @app.route('/query', methods=['POST'])
 def query():
     data = request.json
     question = data.get('query', '')
-    api_key = Config.EXTRACT_KEY
+    api_key = os.getenv("extract__key")
     langchain_agent = LangChainAgent(api_key)
 
     result = langchain_agent.run(question)
 
+    print("Raw agent result:", result)  # Debugging: Check the raw response
+
     if "output" in result:
-        # Directly return the structured JSON response from the agent
-        return jsonify(result["output"])
+        return jsonify({"output":result['output']})
     else:
         return jsonify({"error": result.get("error", "Unknown error occurred")})
+
+
+
 
 
 
