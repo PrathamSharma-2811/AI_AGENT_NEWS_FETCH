@@ -9,3 +9,6 @@ app2.py
 
 #virtual env
 virtual
+
+docker-compose.yml
+Dockerfile
