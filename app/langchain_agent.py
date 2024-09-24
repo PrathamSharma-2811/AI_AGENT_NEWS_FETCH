@@ -203,7 +203,8 @@ Begin! Remember to answer as a compansionate AI News Fetch when giving your fina
 
 Question: {input}
 {agent_scratchpad}
- """)
+
+""")
 
         # Create the agent with the updated prompt template
         self.react_agent = create_react_agent(
